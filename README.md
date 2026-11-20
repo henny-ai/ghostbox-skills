@@ -19,7 +19,7 @@ rules, an `AGENTS.md`, a system prompt) can take the body of `ghostbox/SKILL.md`
 ## Connect the MCP server
 
 The skill works best with GhostBox's MCP tools. Create an API key in the GhostBox app (Settings,
-API keys; Pro plan), keep it in the `DECOY_API_KEY` environment variable, and send it as a header:
+Agents, Connect an agent; Pro plan), keep it in the `DECOY_API_KEY` environment variable, and send it as a header:
 
 - Endpoint: `https://api.decoy.henny.ai/mcp` (Streamable HTTP)
 - Header: `Authorization: Bearer <your API key>`
