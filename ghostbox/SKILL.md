@@ -21,8 +21,8 @@ Use the first one available:
 3. **The REST API** with `curl`, using `DECOY_API_KEY` and `DECOY_API_URL` from the environment.
    The full contract is at `$DECOY_API_URL/v1/openapi.json` (no auth needed).
 
-If none is set up, tell the user once: they create an API key in the GhostBox app (Settings, API
-keys) and either connect the MCP server or run `decoy login`. Do not ask them to paste the key
+If none is set up, tell the user once: they create an API key in the GhostBox app (Settings, Agents,
+Connect an agent; Pro plan) and either connect the MCP server or run `decoy login`. Do not ask them to paste the key
 into the chat.
 
 ## Before a batch of work
@@ -97,8 +97,8 @@ CLI: 1 failed, 2 usage, 3 key missing or rejected).
 | `unauthorized` | Key missing, revoked or wrong (over MCP this is HTTP 401, so the client reports a connection or sign-in failure) | Ask the user for a current key (via `decoy login` or their MCP config, not the chat) |
 | `forbidden` | The key lacks a scope, or the action is app-only | Tell the user what the key cannot do |
 | `not_found` | No such alias for this user | Check the address with `list_aliases` |
-| `conflict` | No verified mailbox yet, or the alias is paused | Tell the user to add and verify a mailbox in the app, or resume the alias |
-| `limit_reached` | A daily or plan limit | Do not retry today; `whoami` shows when it resets. Tell the user (plans are in the app) |
+| `conflict` | No verified mailbox yet, or the alias is paused (the message says which) | No mailbox: tell the user to add and verify one in the app. Paused: resume it with `update_alias` if the user wants mail again |
+| `limit_reached` | A daily cap (resets at midnight UTC; `whoami` shows when) or a plan limit (no reset) | Do not retry in a loop. Tell the user which: wait for the reset, or change plan in the app |
 | `rate_limited` | Too many requests just now | Wait the seconds it names (`Try again in N seconds`, or `Retry-After` in REST), then retry once |
 | `feature_disabled` | The agent inbox is off | Fall back to `get_alias_activity` and ask the user |
 
