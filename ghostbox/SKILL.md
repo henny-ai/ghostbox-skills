@@ -14,8 +14,9 @@ that one off without touching anything else.
 Use the first one available:
 
 1. **GhostBox MCP tools** (`whoami`, `create_alias`, `list_alias_styles`, `list_alias_domains`, `list_aliases`, `get_alias`, `update_alias`,
-   `get_alias_activity`, `list_contacts`, `create_contact_address`, `block_sender`, and `read_messages` where the
-   agent inbox is on). If you see these tools, use them.
+   `get_alias_activity`, `list_contacts`, `create_contact_address`, `block_sender`, and `read_messages` only
+   when it is listed: that needs the agent inbox on and a key with `messages:read`). If you see
+   these tools, use them.
 2. **The `decoy` CLI**, when you can run shell commands and `decoy whoami` shows a key. Add
    `--json` when you need to parse the output; plain output prints just the address.
 3. **The REST API** with `curl`, using `DECOY_API_KEY` and `DECOY_API_URL` from the environment.
