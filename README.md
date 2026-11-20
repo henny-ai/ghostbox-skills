@@ -24,13 +24,16 @@ API keys; Pro plan), keep it in the `DECOY_API_KEY` environment variable, and se
 - Endpoint: `https://api.decoy.henny.ai/mcp` (Streamable HTTP)
 - Header: `Authorization: Bearer <your API key>`
 
-Clients that take JSON config (Cursor, VS Code and others; key names vary slightly) look like this:
+Cursor (`~/.cursor/mcp.json`):
 
 ```json
 { "mcpServers": { "ghostbox": {
   "url": "https://api.decoy.henny.ai/mcp",
-  "headers": { "Authorization": "Bearer ${DECOY_API_KEY}" } } } }
+  "headers": { "Authorization": "Bearer ${env:DECOY_API_KEY}" } } } }
 ```
+
+Other clients take the same URL and header; check how yours reads an environment variable in its
+config.
 
 Claude Code: `claude mcp add --transport http ghostbox https://api.decoy.henny.ai/mcp --header "Authorization: Bearer $DECOY_API_KEY"`
 
