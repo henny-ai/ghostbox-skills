@@ -94,12 +94,12 @@ CLI: 1 failed, 2 usage, 3 key missing or rejected).
 | Code | Meaning | Do this |
 | --- | --- | --- |
 | `bad_request` | An argument is wrong | Fix it and retry |
-| `unauthorized` | Key missing, revoked or wrong | Ask the user for a current key (via `decoy login`, not the chat) |
+| `unauthorized` | Key missing, revoked or wrong (over MCP this is HTTP 401, so the client reports a connection or sign-in failure) | Ask the user for a current key (via `decoy login` or their MCP config, not the chat) |
 | `forbidden` | The key lacks a scope, or the action is app-only | Tell the user what the key cannot do |
 | `not_found` | No such alias for this user | Check the address with `list_aliases` |
 | `conflict` | No verified mailbox yet, or the alias is paused | Tell the user to add and verify a mailbox in the app, or resume the alias |
 | `limit_reached` | A daily or plan limit | Do not retry today; `whoami` shows when it resets. Tell the user (plans are in the app) |
-| `rate_limited` | Too many requests just now | Wait for `Retry-After` seconds, then retry once |
+| `rate_limited` | Too many requests just now | Wait the seconds it names (`Try again in N seconds`, or `Retry-After` in REST), then retry once |
 | `feature_disabled` | The agent inbox is off | Fall back to `get_alias_activity` and ask the user |
 
 ## Privacy rules
